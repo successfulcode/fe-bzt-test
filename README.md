@@ -4,7 +4,7 @@
 products with pagination.\
 • Each product (card) must contain image, name, brand and price.\
 • Make the list responsive.\
-• Make the list sortable by price (asc/desc).\
+• Make the list sortable by price (asc/desc).
 
 # Technology stack
 React.js, Redux, React-redux, Redux-thunk, Axios, Bulma

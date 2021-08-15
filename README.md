@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Frontend test task
+
+• With the extracted JSON or the provided one (product_list.js), create a list of
+products with pagination.
+• Each product (card) must contain image, name, brand and price.
+• Make the list responsive.
+• Make the list sortable by price (asc/desc).
+
+# Technology stack
+React.js, Redux, React-redux, Redux-thunk, Axios, Bulma
+
+##  Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,13 +1,16 @@
 # Frontend test task
 
-• With the extracted JSON or the provided one (product_list.js), create a list of
-products with pagination.
-• Each product (card) must contain image, name, brand and price.
-• Make the list responsive.
-• Make the list sortable by price (asc/desc).
+• With the extracted JSON or the provided one (product_list.js), create a list of\
+products with pagination.\
+• Each product (card) must contain image, name, brand and price.\
+• Make the list responsive.\
+• Make the list sortable by price (asc/desc).\
 
 # Technology stack
 React.js, Redux, React-redux, Redux-thunk, Axios, Bulma
+
+![test_task_shop](https://user-images.githubusercontent.com/56683358/129490256-1e36b856-5296-40e7-b84f-bf01818eb37a.jpg)
+
 
 ##  Getting Started with Create React App
 

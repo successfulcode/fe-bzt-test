@@ -1,0 +1,19 @@
+@import './styles.scss';
+
+.ProductsListItem {
+  cursor: pointer;
+  height: 350px;
+  width: 300px;
+  .ProductsListItem__image-img {
+    height: 200px;
+    width: auto;
+  }
+  .ProductsListItem__image {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.App {
+  min-height: 100vh;
+}

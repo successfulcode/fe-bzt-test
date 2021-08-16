@@ -9,6 +9,9 @@ products with pagination.\
 # Technology stack
 React.js, Redux, React-redux, Redux-thunk, Axios, Bulma
 
+# Live preview
+https://testtaskshop.netlify.app
+
 ![test_task_shop](https://user-images.githubusercontent.com/56683358/129490256-1e36b856-5296-40e7-b84f-bf01818eb37a.jpg)
 
 

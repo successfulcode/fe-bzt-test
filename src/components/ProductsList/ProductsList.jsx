@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   getProducts,
-  resetNotification
+  resetNotification,
+  getProductsAscending,
+  getProductsDescending
 } from '../../redux/actions/productsActions';
 import Spinner from '../../UI/Spinner/Spinner';
 import Notification from '../../UI/Notification/Notification';
 import ProductsListItem from '../ProductsListItem/ProductsListItem';
 import Sort from '../Sort/Sort';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProductsList = ({
   products,
@@ -17,11 +20,15 @@ const ProductsList = ({
   isNotification,
   notification,
   notificationType,
-  resetNotification
+  resetNotification,
+  getProductsAscending,
+  getProductsDescending
 }) => {
   useEffect(() => {
     getProducts();
   }, [getProducts]);
+
+  console.log('products', products);
 
   return (
     <>
@@ -30,17 +37,26 @@ const ProductsList = ({
           {notification}
         </Notification>
       )}
-      <Sort />
+      <Sort
+        getProductsAscending={getProductsAscending}
+        getProductsDescending={getProductsDescending}
+      />
       {isLoading ? (
         <div className='is-flex is-justify-content-center is-align-content-center'>
           <Spinner />
         </div>
       ) : (
-        <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
-          {products.map((product) => (
-            <ProductsListItem key={product.id} product={product} />
-          ))}
-        </div>
+        <InfiniteScroll
+          dataLength={products.length}
+          next={getProducts}
+          hasMore={true}
+        >
+          <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
+            {products.map((product) => (
+              <ProductsListItem key={product.id} product={product} />
+            ))}
+          </div>
+        </InfiniteScroll>
       )}
     </>
   );
@@ -53,7 +69,9 @@ ProductsList.propTypes = {
   isNotification: PropTypes.bool,
   notification: PropTypes.string,
   notificationType: PropTypes.string,
-  resetNotification: PropTypes.func
+  resetNotification: PropTypes.func,
+  getProductsAscending: PropTypes.func,
+  getProductsDescending: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -66,6 +84,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getProducts, resetNotification })(
-  ProductsList
-);
+export default connect(mapStateToProps, {
+  getProducts,
+  resetNotification,
+  getProductsAscending,
+  getProductsDescending
+})(ProductsList);

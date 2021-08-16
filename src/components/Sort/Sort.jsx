@@ -1,11 +1,18 @@
 import { useState } from 'react';
 
-const Sort = () => {
+const Sort = ({ getProductsAscending, getProductsDescending }) => {
   const [filter, setFilter] = useState('');
 
   const filterHandler = (e) => {
     setFilter(e.target.value);
     console.log(filter);
+    if (filter === 'ascending') {
+      getProductsAscending();
+      console.log('a test');
+    } else if (filter === 'descending') {
+      getProductsDescending();
+      console.log('d test');
+    }
   };
 
   return (

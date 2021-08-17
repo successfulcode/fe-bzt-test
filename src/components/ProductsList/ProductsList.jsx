@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -24,11 +24,19 @@ const ProductsList = ({
   getProductsAscending,
   getProductsDescending
 }) => {
-  useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+  const [page, setPage] = useState(1);
 
-  console.log('products', products);
+  useEffect(() => {
+    getProducts(page);
+    setPage(page + 1);
+  }, [getProducts, page]);
+
+  const getProductsItems = () => {
+    getProducts(page);
+    setPage(page + 1);
+  };
+
+  console.log('ProductsList', products);
 
   return (
     <>
@@ -45,10 +53,10 @@ const ProductsList = ({
         <div className='is-flex is-justify-content-center is-align-content-center'>
           <Spinner />
         </div>
-      ) : (
+      ) : products ? (
         <InfiniteScroll
           dataLength={products.length}
-          next={getProducts}
+          next={getProductsItems}
           hasMore={true}
         >
           <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
@@ -57,6 +65,10 @@ const ProductsList = ({
             ))}
           </div>
         </InfiniteScroll>
+      ) : (
+        <div className='is-flex is-justify-content-center'>
+          <p>Product list is empty...</p>
+        </div>
       )}
     </>
   );

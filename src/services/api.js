@@ -3,20 +3,25 @@ import product_list from '../data/product_list.json';
 const status = 200;
 
 export const productsApi = {
-  getProducts() {
-    console.log('getProducts');
+  async getProducts(page) {
+    const products = [...product_list];
+    const step = 2;
     return {
       status,
-      data: product_list.splice(0, 10)
+      data: products.splice((page - 1) * step, step)
     };
   },
-  getProductsById(id) {
+  async getProductsById(id) {
+    const products = [...product_list];
+    const item = products.find((product) => product.id === id);
+    console.log('getProductsById', products);
+    console.log('getProductsById item', item);
     return {
       status,
-      data: product_list.find((product) => product.id === id)
+      data: products.find((product) => product.id === id)
     };
   },
-  getProductsAscending() {
+  async getProductsAscending() {
     return {
       status,
       data: product_list
@@ -24,7 +29,7 @@ export const productsApi = {
         .splice(0, 5)
     };
   },
-  getProductsDescending() {
+  async getProductsDescending() {
     return {
       status,
       data: product_list

@@ -7,7 +7,7 @@ products with pagination.\
 • Make the list sortable by price (asc/desc).
 
 # Technology stack
-React.js, Redux, React-redux, Redux-thunk, Axios, Bulma
+React.js, Redux, React-redux, Redux-thunk, Bulma
 
 # Live preview
 https://testtaskshop.netlify.app

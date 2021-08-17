@@ -10,7 +10,7 @@ const Sort = ({ getProductsAscending, getProductsDescending }) => {
       getProductsAscending();
       console.log('a test');
     } else if (filter === 'descending') {
-      getProductsDescending();
+      getProductsAscending();
       console.log('d test');
     }
   };

@@ -9,15 +9,18 @@ import {
   SET_PRODUCT_BY_ID,
   SET_SORT_PRODUCTS,
   RESET_CURRENT_PRODUCT,
-  RESET_PRODUCTS
+  RESET_PRODUCTS,
+  SET_PRODUCTS_ASCENDING
 } from '../actions/actionsTypes';
 
-export const getProducts = (page) => {
+export const getProducts = (pageNumber, pageSize) => {
   return async (dispatch) => {
-    console.log('getProducts');
     try {
       dispatch(isLoading());
-      const { status, data } = await productsApi.getProducts(page);
+      const { status, data } = await productsApi.getProducts(
+        pageNumber,
+        pageSize
+      );
       if (status === 200 && data) {
         dispatch(setProducts(data));
         dispatch(isLoadingFalse());
@@ -59,25 +62,26 @@ export const getProductById = (id) => {
 
 export const getProductsAscending = () => {
   return async (dispatch) => {
-    dispatch(isLoading());
-    try {
-      const { status, data } = await productsApi.getProductsAscending();
-      if (status === 200) {
-        dispatch(setSortProducts(data));
-        dispatch(isLoadingFalse());
-        setTimeout(() => {
-          dispatch(resetNotification());
-        }, 5000);
-      }
-    } catch (error) {
-      console.log(error);
-      dispatch(setNotification('Error! Something wrong...', 'is-danger'));
-      setTimeout(() => {
-        dispatch(resetNotification());
-      }, 3000);
-    } finally {
-      dispatch(isLoadingFalse());
-    }
+    await dispatch(sortProductsAscending());
+    // dispatch(isLoading());
+    // try {
+    //   const { status, data } = await productsApi.getProductsAscending();
+    //   if (status === 200) {
+    //     dispatch(setSortProducts(data));
+    //     dispatch(isLoadingFalse());
+    //     setTimeout(() => {
+    //       dispatch(resetNotification());
+    //     }, 5000);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   dispatch(setNotification('Error! Something wrong...', 'is-danger'));
+    //   setTimeout(() => {
+    //     dispatch(resetNotification());
+    //   }, 3000);
+    // } finally {
+    //   dispatch(isLoadingFalse());
+    // }
   };
 };
 
@@ -124,3 +128,4 @@ const setProductById = (data) => ({
 const setSortProducts = (data) => ({ type: SET_SORT_PRODUCTS, data });
 export const resetCurrentProduct = () => ({ type: RESET_CURRENT_PRODUCT });
 export const resetProducts = () => ({ type: RESET_PRODUCTS });
+export const sortProductsAscending = () => ({ type: SET_PRODUCTS_ASCENDING });

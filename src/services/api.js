@@ -3,19 +3,16 @@ import product_list from '../data/product_list.json';
 const status = 200;
 
 export const productsApi = {
-  async getProducts(page) {
+  async getProducts(pageNumber, pageSize) {
     const products = [...product_list];
-    const step = 2;
     return {
       status,
-      data: products.splice((page - 1) * step, step)
+      data: products.splice((pageNumber - 1) * pageSize, pageSize)
     };
   },
   async getProductsById(id) {
     const products = [...product_list];
     const item = products.find((product) => product.id === id);
-    console.log('getProductsById', products);
-    console.log('getProductsById item', item);
     return {
       status,
       data: products.find((product) => product.id === id)
@@ -23,18 +20,14 @@ export const productsApi = {
   },
   async getProductsAscending() {
     return {
-      status,
-      data: product_list
-        .sort((a, b) => b.actual_price - a.actual_price)
-        .splice(0, 5)
+      status
+      // data: products.sort((a, b) => b.actual_price - a.actual_price)
     };
   },
   async getProductsDescending() {
     return {
-      status,
-      data: product_list
-        .sort((a, b) => a.actual_price - b.actual_price)
-        .splice(0, 5)
+      status
+      // data: products.sort((a, b) => a.actual_price - b.actual_price)
     };
   }
 };

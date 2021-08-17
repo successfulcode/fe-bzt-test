@@ -24,20 +24,31 @@ const ProductsList = ({
   getProductsAscending,
   getProductsDescending
 }) => {
-  const [page, setPage] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  useEffect(() => {
-    getProducts(page);
-    setPage(page + 1);
-  }, [getProducts, page]);
+  const pageSize = 2;
 
-  const getProductsItems = () => {
-    getProducts(page);
-    setPage(page + 1);
+  const setCurrnetPage = () => {
+    if (products.length > 0) {
+      setPageNumber(products.length / pageSize + 1);
+    } else {
+      setPageNumber(pageNumber + 1);
+    }
   };
 
-  console.log('ProductsList', products);
+  useEffect(() => {
+    setCurrnetPage();
+    if (products.length === 0) {
+      getProducts(pageNumber, pageSize);
+    }
+  }, [getProducts]);
 
+  const getProductsItems = () => {
+    getProducts(pageNumber, pageSize);
+    setPageNumber(pageNumber + 1);
+  };
+
+  console.log('products', products);
   return (
     <>
       {isNotification && (

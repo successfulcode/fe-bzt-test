@@ -11,10 +11,11 @@ import Spinner from '../../UI/Spinner/Spinner';
 import Notification from '../../UI/Notification/Notification';
 import ProductsListItem from '../ProductsListItem/ProductsListItem';
 import Sort from '../Sort/Sort';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import Pagination from '../Pagination/Pagination';
 
 const ProductsList = ({
   products,
+  total,
   getProducts,
   isLoading,
   isNotification,
@@ -24,29 +25,25 @@ const ProductsList = ({
   getProductsAscending,
   getProductsDescending
 }) => {
-  const [pageNumber, setPageNumber] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(3);
 
-  const pageSize = 2;
-
-  const setCurrnetPage = () => {
-    if (products.length > 0) {
-      setPageNumber(products.length / pageSize + 1);
-    } else {
-      setPageNumber(pageNumber + 1);
-    }
-  };
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
 
   useEffect(() => {
-    setCurrnetPage();
-    if (products.length === 0) {
-      getProducts(pageNumber, pageSize);
+    if (currentPage === 1) {
+      getProducts(currentPage - 1, productsPerPage);
+    } else {
+      getProducts(indexOfFirstProduct, indexOfLastProduct);
     }
-  }, [getProducts]);
-
-  const getProductsItems = () => {
-    getProducts(pageNumber, pageSize);
-    setPageNumber(pageNumber + 1);
-  };
+  }, [
+    getProducts,
+    productsPerPage,
+    currentPage,
+    indexOfFirstProduct,
+    indexOfLastProduct
+  ]);
 
   console.log('products', products);
   return (
@@ -64,23 +61,24 @@ const ProductsList = ({
         <div className='is-flex is-justify-content-center is-align-content-center'>
           <Spinner />
         </div>
-      ) : products ? (
-        <InfiniteScroll
-          dataLength={products.length}
-          next={getProductsItems}
-          hasMore={true}
-        >
-          <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
-            {products.map((product) => (
-              <ProductsListItem key={product.id} product={product} />
-            ))}
-          </div>
-        </InfiniteScroll>
+      ) : products.length > 0 ? (
+        <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
+          {products.map((product) => (
+            <ProductsListItem key={product.id} product={product} />
+          ))}
+        </div>
       ) : (
         <div className='is-flex is-justify-content-center'>
           <p>Product list is empty...</p>
         </div>
       )}
+      <Pagination
+        productsTotal={total}
+        getProducts={getProducts}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        productsPerPage={productsPerPage}
+      />
     </>
   );
 };
@@ -100,6 +98,7 @@ ProductsList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     products: state.products.productsList,
+    total: state.products.total,
     isLoading: state.products.isLoading,
     isNotification: state.products.isNotification,
     notification: state.products.notification.message,

@@ -1,5 +1,9 @@
 @import './styles.scss';
 
+.App {
+  min-height: 100vh;
+}
+
 .ProductsListItem {
   cursor: pointer;
   height: 350px;
@@ -14,6 +18,9 @@
   }
 }
 
-.App {
-  min-height: 100vh;
+.Pagination__span-link {
+  cursor: pointer;
+}
+.Pagination__span-hide {
+  visibility: hidden;
 }

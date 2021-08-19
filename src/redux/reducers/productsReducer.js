@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   productsList: [],
+  total: 1,
   isLoading: false,
   isNotification: false,
   notification: {
@@ -25,7 +26,9 @@ const productsReducer = (state = initialState, action) => {
     case SET_PRODUCTS:
       return {
         ...state,
-        productsList: [...state.productsList, ...action.data]
+        // productsList: [...state.productsList, ...action.data],
+        productsList: [...action.data],
+        total: action.total
       };
     case SET_SORT_PRODUCTS:
       return {

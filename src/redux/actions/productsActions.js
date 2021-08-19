@@ -17,14 +17,12 @@ export const getProducts = (pageNumber, pageSize) => {
   return async (dispatch) => {
     try {
       dispatch(isLoading());
-      const { status, data } = await productsApi.getProducts(
+      const { status, data, total } = await productsApi.getProducts(
         pageNumber,
         pageSize
       );
       if (status === 200 && data) {
-        dispatch(setProducts(data));
-        dispatch(isLoadingFalse());
-        console.log('data', data);
+        dispatch(setProducts(data, total));
       }
     } catch (error) {
       console.log(error);
@@ -109,7 +107,7 @@ export const getProductsDescending = () => {
   };
 };
 
-const setProducts = (data) => ({ type: SET_PRODUCTS, data });
+const setProducts = (data, total) => ({ type: SET_PRODUCTS, data, total });
 const isLoading = () => ({ type: IS_LOADING_TRUE });
 const isLoadingFalse = () => ({ type: IS_LOADING_FALSE });
 const setNotification = (

@@ -4,10 +4,10 @@ const status = 200;
 
 export const productsApi = {
   async getProducts(pageNumber, pageSize) {
-    const products = [...product_list];
     return {
       status,
-      data: products.splice((pageNumber - 1) * pageSize, pageSize)
+      data: product_list.slice(pageNumber, pageSize),
+      total: product_list.length
     };
   },
   async getProductsById(id) {

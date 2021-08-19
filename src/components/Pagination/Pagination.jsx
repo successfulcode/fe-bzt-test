@@ -6,14 +6,30 @@ const Pagination = ({
   currentPage,
   setCurrentPage
 }) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(productsTotal / productsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
   const setCurrentPageHandler = (number) => {
     setCurrentPage(number);
   };
+
+  let totalPages = productsTotal / productsPerPage;
+  const pagesNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPages); i++) {
+    pagesNumbers.push(i);
+  }
+
+  let startPage;
+  let endPage;
+  if (currentPage <= 6 || productsTotal <= 9) {
+    startPage = 0;
+    endPage = 9;
+  } else if (currentPage + 4 >= totalPages) {
+    startPage = totalPages - 9;
+    endPage = totalPages;
+  } else {
+    startPage = currentPage - 5;
+    endPage = currentPage + 4;
+  }
+
+  const showPagesNumber = pagesNumbers.slice(startPage, endPage);
 
   return (
     <>
@@ -37,7 +53,7 @@ const Pagination = ({
           </div>
           <div>
             <ul className='pagination-list'>
-              {pageNumbers.map((number) => (
+              {showPagesNumber.map((number) => (
                 <li key={number}>
                   <span
                     className={`Pagination__span-link pagination-link ${

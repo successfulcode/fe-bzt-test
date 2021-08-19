@@ -14,11 +14,6 @@ https://testtaskshop.netlify.app
 
 ![test_task_shop](https://user-images.githubusercontent.com/56683358/129490256-1e36b856-5296-40e7-b84f-bf01818eb37a.jpg)
 
-
-##  Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:

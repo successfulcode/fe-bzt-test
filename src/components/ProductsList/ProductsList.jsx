@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   getProducts,
-  resetNotification,
-  getProductsAscending,
-  getProductsDescending
+  resetNotification
 } from '../../redux/actions/productsActions';
 import Spinner from '../../UI/Spinner/Spinner';
 import Notification from '../../UI/Notification/Notification';
@@ -21,18 +19,17 @@ const ProductsList = ({
   isNotification,
   notification,
   notificationType,
-  resetNotification,
-  getProductsAscending,
-  getProductsDescending
+  resetNotification
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(3);
+  const [productsPerPage] = useState(48);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const [filterStatus, setFilterStatus] = useState('none');
 
   useEffect(() => {
     if (currentPage === 1) {
-      getProducts(currentPage - 1, productsPerPage);
+      getProducts(currentPage - 1, productsPerPage, filterStatus);
     } else {
       getProducts(indexOfFirstProduct, indexOfLastProduct);
     }
@@ -41,7 +38,8 @@ const ProductsList = ({
     productsPerPage,
     currentPage,
     indexOfFirstProduct,
-    indexOfLastProduct
+    indexOfLastProduct,
+    filterStatus
   ]);
 
   console.log('products', products);
@@ -52,10 +50,7 @@ const ProductsList = ({
           {notification}
         </Notification>
       )}
-      <Sort
-        getProductsAscending={getProductsAscending}
-        getProductsDescending={getProductsDescending}
-      />
+      <Sort setFilterStatus={setFilterStatus} setCurrentPage={setCurrentPage} />
       {isLoading ? (
         <div className='is-flex is-justify-content-center is-align-content-center'>
           <Spinner />
@@ -89,9 +84,7 @@ ProductsList.propTypes = {
   isNotification: PropTypes.bool,
   notification: PropTypes.string,
   notificationType: PropTypes.string,
-  resetNotification: PropTypes.func,
-  getProductsAscending: PropTypes.func,
-  getProductsDescending: PropTypes.func
+  resetNotification: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -107,7 +100,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getProducts,
-  resetNotification,
-  getProductsAscending,
-  getProductsDescending
+  resetNotification
 })(ProductsList);

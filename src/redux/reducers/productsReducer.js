@@ -4,9 +4,7 @@ import {
   IS_LOADING_FALSE,
   SET_NOTIFICATION,
   RESET_NOTIFICATION,
-  SET_PRODUCT_BY_ID,
-  SET_SORT_PRODUCTS,
-  SET_PRODUCTS_ASCENDING
+  SET_PRODUCT_BY_ID
 } from '../actions/actionsTypes';
 
 const initialState = {
@@ -26,14 +24,8 @@ const productsReducer = (state = initialState, action) => {
     case SET_PRODUCTS:
       return {
         ...state,
-        // productsList: [...state.productsList, ...action.data],
         productsList: [...action.data],
         total: action.total
-      };
-    case SET_SORT_PRODUCTS:
-      return {
-        ...state
-        // productsList: action.data
       };
     case IS_LOADING_TRUE:
       return {
@@ -70,14 +62,6 @@ const productsReducer = (state = initialState, action) => {
         currentProduct: action.data
       };
 
-    case SET_PRODUCTS_ASCENDING:
-      const sortedProducts = state.productsList.sort(
-        (a, b) => b.actual_price - a.actual_price
-      );
-      return {
-        ...state,
-        productsList: [...sortedProducts]
-      };
     default:
       return state;
   }

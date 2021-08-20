@@ -35,24 +35,22 @@ const Pagination = ({
     <>
       {!(productsTotal <= productsPerPage) && (
         <nav
-          className='is-flex is-justify-content-space-between mt-5 mb-5'
+          className='is-flex is-justify-content-center mt-5 mb-5'
           role='navigation'
           aria-label='pagination'
         >
           <div>
-            {
-              <span
-                className={`Pagination__span-link  pagination-previous ${
-                  currentPage === 1 && 'Pagination__span-hide'
-                } `}
-                onClick={() => setCurrentPageHandler(currentPage - 1)}
-              >
-                Previous
-              </span>
-            }
+            <span
+              className={`Pagination__span-link  pagination-previous ${
+                currentPage === 1 && 'Pagination__span-hide'
+              } `}
+              onClick={() => setCurrentPageHandler(currentPage - 1)}
+            >
+              Previous
+            </span>
           </div>
           <div>
-            <ul className='pagination-list'>
+            <ul className='is-flex is-justify-content-center is-flex-wrap-wrap'>
               {showPagesNumber.map((number) => (
                 <li key={number}>
                   <span

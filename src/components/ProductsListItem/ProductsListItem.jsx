@@ -1,18 +1,14 @@
 import PropTypes from 'prop-types';
-import { Img } from 'react-image';
 import { Link } from 'react-router-dom';
-import Spinner from '../../UI/Spinner/Spinner';
 
 const ProductsListItem = ({ product }) => {
-  const loader = <Spinner />;
   return (
     <div className='ProductsListItem box m-2'>
       <Link to={`/product/${product.id}`}>
         <div className='ProductsListItem__image'>
-          <Img
+          <img
             src={product.filename}
-            alt='Product image'
-            loader={loader}
+            alt='Product'
             className='ProductsListItem__image-img'
           />
         </div>

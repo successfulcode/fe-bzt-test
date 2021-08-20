@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   productsList: [],
+  total: 1,
   isLoading: false,
   isNotification: false,
   notification: {
@@ -23,7 +24,8 @@ const productsReducer = (state = initialState, action) => {
     case SET_PRODUCTS:
       return {
         ...state,
-        productsList: action.data
+        productsList: [...action.data],
+        total: action.total
       };
     case IS_LOADING_TRUE:
       return {
@@ -48,17 +50,18 @@ const productsReducer = (state = initialState, action) => {
       return {
         ...state,
         isNotification: false,
-        notification: ''
+        notification: {
+          message: '',
+          type: 'is-success'
+        }
       };
 
     case SET_PRODUCT_BY_ID:
-      const product = state.productsList.filter(
-        (product) => product.id === action.id
-      );
       return {
         ...state,
-        currentProduct: product[0]
+        currentProduct: action.data
       };
+
     default:
       return state;
   }

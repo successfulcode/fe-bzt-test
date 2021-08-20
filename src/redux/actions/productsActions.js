@@ -6,21 +6,21 @@ import {
   IS_LOADING_FALSE,
   SET_NOTIFICATION,
   RESET_NOTIFICATION,
-  SET_PRODUCT_BY_ID
+  SET_PRODUCT_BY_ID,
+  RESET_CURRENT_PRODUCT
 } from '../actions/actionsTypes';
 
-export const getProducts = () => {
+export const getProducts = (pageNumber, pageSize, filterStatus) => {
   return async (dispatch) => {
-    dispatch(isLoading());
     try {
-      const { status, data } = await productsApi.getAxios();
-      if (status === 200) {
-        dispatch(setProducts(data));
-        dispatch(isLoadingFalse());
-        dispatch(setNotification('Data loaded success', 'is-success'));
-        setTimeout(() => {
-          dispatch(resetNotification());
-        }, 5000);
+      dispatch(isLoading());
+      const { status, data, total } = await productsApi.getProducts(
+        pageNumber,
+        pageSize,
+        filterStatus
+      );
+      if (status === 200 && data) {
+        dispatch(setProducts(data, total));
       }
     } catch (error) {
       console.log(error);
@@ -36,12 +36,27 @@ export const getProducts = () => {
 
 export const getProductById = (id) => {
   return async (dispatch) => {
-    await dispatch(getProducts());
-    dispatch(setProductById(id));
+    try {
+      dispatch(isLoading());
+      const { status, data } = await productsApi.getProductsById(id);
+      if (status === 200 && data) {
+        console.log('getProductById', data);
+        await dispatch(setProductById(data));
+        dispatch(isLoadingFalse());
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(setNotification('Error! Something wrong...', 'is-danger'));
+      setTimeout(() => {
+        dispatch(resetNotification());
+      }, 3000);
+    } finally {
+      dispatch(isLoadingFalse());
+    }
   };
 };
 
-const setProducts = (data) => ({ type: SET_PRODUCTS, data });
+const setProducts = (data, total) => ({ type: SET_PRODUCTS, data, total });
 const isLoading = () => ({ type: IS_LOADING_TRUE });
 const isLoadingFalse = () => ({ type: IS_LOADING_FALSE });
 const setNotification = (
@@ -53,8 +68,8 @@ const setNotification = (
   notificationType
 });
 export const resetNotification = () => ({ type: RESET_NOTIFICATION });
-
-export const setProductById = (id) => ({
+const setProductById = (data) => ({
   type: SET_PRODUCT_BY_ID,
-  id
+  data
 });
+export const resetCurrentProduct = () => ({ type: RESET_CURRENT_PRODUCT });

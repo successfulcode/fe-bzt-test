@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getProductById } from '../../redux/actions/productsActions';
+import {
+  getProductById,
+  resetCurrentProduct
+} from '../../redux/actions/productsActions';
 import { useParams } from 'react-router-dom';
-import { Img } from 'react-image';
 import Spinner from '../../UI/Spinner/Spinner';
 
-const Product = ({ getProductById, product, isLoading }) => {
+const Product = ({
+  getProductById,
+  product,
+  isLoading,
+  resetCurrentProduct
+}) => {
   const { id } = useParams();
-  const loader = <Spinner />;
 
   useEffect(() => {
     getProductById(id);
-  }, [id, getProductById]);
+    return resetCurrentProduct();
+  }, [getProductById, resetCurrentProduct, id]);
 
   return (
     <>
@@ -24,12 +31,7 @@ const Product = ({ getProductById, product, isLoading }) => {
         <section className='mt-5 is-flex is-justify-content-center'>
           <div>
             <div>
-              <Img
-                src={product.filename}
-                alt='Product image'
-                loader={loader}
-                className='ProductsListItem__image-img'
-              />
+              <img src={product.filename} alt='Product' />
             </div>
             <div className='mt-5 is-flex is-justify-content-center'>
               <div>
@@ -51,7 +53,8 @@ const Product = ({ getProductById, product, isLoading }) => {
 Product.propTypes = {
   isLoading: PropTypes.bool,
   getProductById: PropTypes.func,
-  product: PropTypes.object
+  product: PropTypes.object,
+  resetCurrentProduct: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -60,4 +63,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getProductById })(Product);
+export default connect(mapStateToProps, {
+  getProductById,
+  resetCurrentProduct
+})(Product);

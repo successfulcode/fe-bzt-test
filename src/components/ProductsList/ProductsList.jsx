@@ -56,7 +56,11 @@ const ProductsList = ({
           {notification}
         </Notification>
       )}
-      <Sort setFilterStatus={setFilterStatus} setCurrentPage={setCurrentPage} />
+      <Sort
+        setFilterStatus={setFilterStatus}
+        setCurrentPage={setCurrentPage}
+        filterStatus={filterStatus}
+      />
       {isLoading ? (
         <div className='is-flex is-justify-content-center is-align-content-center'>
           <Spinner />

@@ -10,7 +10,6 @@ import Notification from '../../UI/Notification/Notification';
 import ProductsListItem from '../ProductsListItem/ProductsListItem';
 import Sort from '../Sort/Sort';
 import Pagination from '../Pagination/Pagination';
-import { animateScroll as scroll } from 'react-scroll';
 
 const ProductsList = ({
   products,
@@ -22,19 +21,25 @@ const ProductsList = ({
   notificationType,
   resetNotification
 }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    parseInt(localStorage.getItem('pageNumber')) || 1
+  );
   const [productsPerPage] = useState(40);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const [filterStatus, setFilterStatus] = useState('none');
+  const [filterStatus, setFilterStatus] = useState(
+    localStorage.getItem('filter') || 'none'
+  );
 
   useEffect(() => {
     if (currentPage === 1) {
       getProducts(currentPage - 1, productsPerPage, filterStatus);
     } else {
-      getProducts(indexOfFirstProduct, indexOfLastProduct);
+      getProducts(indexOfFirstProduct, indexOfLastProduct, filterStatus);
     }
-    scroll.scrollToTop();
+    localStorage.setItem('pageNumber', currentPage);
+    localStorage.setItem('filter', filterStatus);
+    console.log('filterStatus', filterStatus);
   }, [
     getProducts,
     productsPerPage,

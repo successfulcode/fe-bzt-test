@@ -7,6 +7,7 @@ import {
 } from '../../redux/actions/productsActions';
 import { useParams } from 'react-router-dom';
 import Spinner from '../../UI/Spinner/Spinner';
+import { useHistory } from 'react-router-dom';
 
 const Product = ({
   getProductById,
@@ -20,6 +21,8 @@ const Product = ({
     getProductById(id);
     return resetCurrentProduct();
   }, [getProductById, resetCurrentProduct, id]);
+
+  const history = useHistory();
 
   return (
     <>
@@ -43,6 +46,7 @@ const Product = ({
                 </div>
               </div>
             </div>
+            <button onClick={() => history.goBack()}>Back</button>
           </div>
         </section>
       )}

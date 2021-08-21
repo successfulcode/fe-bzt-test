@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { animateScroll as scroll } from 'react-scroll';
 
 const Pagination = ({
   productsTotal,
@@ -8,6 +9,7 @@ const Pagination = ({
 }) => {
   const setCurrentPageHandler = (number) => {
     setCurrentPage(number);
+    scroll.scrollToTop();
   };
 
   let totalPages = productsTotal / productsPerPage;
@@ -28,7 +30,6 @@ const Pagination = ({
     startPage = currentPage - 5;
     endPage = currentPage + 4;
   }
-
   const showPagesNumber = pagesNumbers.slice(startPage, endPage);
 
   return (

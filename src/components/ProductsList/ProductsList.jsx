@@ -22,13 +22,13 @@ const ProductsList = ({
   resetNotification
 }) => {
   const [currentPage, setCurrentPage] = useState(
-    parseInt(localStorage.getItem('pageNumber')) || 1
+    parseInt(sessionStorage.getItem('pageNumber')) || 1
   );
   const [productsPerPage] = useState(32);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const [filterStatus, setFilterStatus] = useState(
-    localStorage.getItem('filter') || 'none'
+    sessionStorage.getItem('filter') || 'none'
   );
 
   useEffect(() => {
@@ -37,8 +37,8 @@ const ProductsList = ({
     } else {
       getProducts(indexOfFirstProduct, indexOfLastProduct, filterStatus);
     }
-    localStorage.setItem('pageNumber', currentPage);
-    localStorage.setItem('filter', filterStatus);
+    sessionStorage.setItem('pageNumber', currentPage);
+    sessionStorage.setItem('filter', filterStatus);
   }, [
     getProducts,
     productsPerPage,

@@ -14,6 +14,7 @@
   .productsListItem__image {
     display: flex;
     justify-content: center;
+    height: 200px;
   }
   .productsListItem__image-img {
     height: 200px;
@@ -21,6 +22,9 @@
   }
   .productsListItem__brand {
     opacity: 0.5;
+  }
+  .productsListItem__image-spinner {
+    margin: auto;
   }
 }
 

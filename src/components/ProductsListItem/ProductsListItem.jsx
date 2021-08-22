@@ -16,7 +16,11 @@ const ProductsListItem = ({ product }) => {
             src={product.filename}
             className='productsListItem__image-img'
             alt='Product'
-            loader={<Spinner />}
+            loader={
+              <div className='productsListItem__image-spinner'>
+                <Spinner />
+              </div>
+            }
           />
         </div>
         <div className='is-flex is-flex-direction-column is-justify-content-center'>

@@ -27,7 +27,11 @@ const ProductsListItem = ({ product }) => {
           <div className='has-text-centered productsListItem__brand'>
             {product.brand_name}
           </div>
-          <div className='has-text-centered'>{product.product_name}</div>
+          <div className='has-text-centered productsListItem__productname'>
+            <div className='productsListItem__productname'>
+              {product.product_name}
+            </div>
+          </div>
           <div className='has-text-centered is-flex is-flex-direction-column'>
             <strong>{roundToTwo(product.actual_price).toFixed(2)} Eur</strong>
           </div>

@@ -26,6 +26,11 @@
   .productsListItem__image-spinner {
     margin: auto;
   }
+  .productsListItem__productname {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
 .pagination__span-link {

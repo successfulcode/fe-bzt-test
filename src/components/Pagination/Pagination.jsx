@@ -55,7 +55,7 @@ const Pagination = ({
               {showPagesNumber.map((number) => (
                 <li key={number}>
                   <span
-                    className={`pagination__span-link pagination-link ${
+                    className={`pagination__span-link-none pagination__span-link pagination-link ${
                       number === currentPage && 'is-current'
                     }`}
                     onClick={() => setCurrentPageHandler(number)}
@@ -65,6 +65,9 @@ const Pagination = ({
                 </li>
               ))}
             </ul>
+            <span className='pagination__span-link-mobile pagination__span-link pagination-link is-current'>
+              {currentPage}
+            </span>
           </div>
           <div>
             <span

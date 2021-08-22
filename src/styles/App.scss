@@ -49,17 +49,6 @@
   }
 }
 
-.pagination__span-link {
-  cursor: pointer;
-}
-.pagination__span-hide {
-  visibility: hidden;
-}
-
-.sort__label {
-  cursor: pointer;
-}
-
 .product {
   .product__image {
     cursor: crosshair;
@@ -84,5 +73,28 @@
     color: #4a4a4a;
     text-decoration: line-through;
     opacity: 0.9;
+  }
+}
+
+.sort__label {
+  cursor: pointer;
+}
+
+.pagination__span-link {
+  cursor: pointer;
+}
+.pagination__span-hide {
+  visibility: hidden;
+}
+.pagination__span-link-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 420px) {
+  .pagination__span-link-none {
+    display: none;
+  }
+  .pagination__span-link-mobile {
+    display: block;
   }
 }

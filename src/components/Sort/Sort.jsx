@@ -7,8 +7,8 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
   };
 
   return (
-    <div className='box mt-4 mx-2'>
-      <div className='is-flex is-justify-content-center is-flex-wrap-wrap'>
+    <div className='box mt-4 mx-2 sort is-flex is-justify-content-center'>
+      <div className='sort is-flex is-justify-content-center is-flex-wrap-wrap'>
         <div className='mr-2'>Sort by price:</div>
         <div>
           <label className='radio mr-5 sort__label'>

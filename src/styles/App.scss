@@ -59,3 +59,30 @@
 .sort__label {
   cursor: pointer;
 }
+
+.product {
+  .product__image {
+    cursor: crosshair;
+  }
+  .product__id {
+    font-size: 0.7rem;
+    opacity: 0.5;
+  }
+  .product__backlink {
+    margin: 10rem;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  .product__info {
+    font-size: 0.7rem;
+  }
+  .product__price-discount {
+    color: #eb152e;
+  }
+
+  .product__price-old {
+    color: #4a4a4a;
+    text-decoration: line-through;
+    opacity: 0.9;
+  }
+}

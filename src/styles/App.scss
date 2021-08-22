@@ -4,27 +4,33 @@
   min-height: 100vh;
 }
 
-.ProductsListItem {
+.productsListItem {
   cursor: pointer;
   height: 350px;
   width: 300px;
-  .ProductsListItem__image-img {
-    height: 200px;
-    width: auto;
+  .productsListItem__link {
+    color: #4a4a4a;
   }
-  .ProductsListItem__image {
+  .productsListItem__image {
     display: flex;
     justify-content: center;
   }
+  .productsListItem__image-img {
+    height: 200px;
+    width: auto;
+  }
+  .productsListItem__brand {
+    opacity: 0.5;
+  }
 }
 
-.Pagination__span-link {
+.pagination__span-link {
   cursor: pointer;
 }
-.Pagination__span-hide {
+.pagination__span-hide {
   visibility: hidden;
 }
 
-.Sort__label {
+.sort__label {
   cursor: pointer;
 }

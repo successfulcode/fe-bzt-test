@@ -11,7 +11,7 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
       <div className='is-flex is-justify-content-center is-flex-wrap-wrap'>
         <div className='mr-2'>Sort by price:</div>
         <div>
-          <label className='radio mr-5 Sort__label'>
+          <label className='radio mr-5 sort__label'>
             <input
               type='radio'
               name='none'
@@ -23,7 +23,7 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
           </label>
         </div>
         <div>
-          <label className='radio mr-5 Sort__label'>
+          <label className='radio mr-5 sort__label'>
             <input
               type='radio'
               name='ascending'
@@ -35,7 +35,7 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
           </label>
         </div>
         <div>
-          <label className='radio Sort__label'>
+          <label className='radio sort__label'>
             <input
               type='radio'
               name='descendin'

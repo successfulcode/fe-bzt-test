@@ -12,8 +12,8 @@ import {
 
 export const getProducts = (pageNumber, pageSize, filterStatus) => {
   return async (dispatch) => {
-    dispatch(isLoading());
     try {
+      dispatch(isLoading());
       const { status, data, total } = await productsApi.getProducts(
         pageNumber,
         pageSize,
@@ -50,14 +50,13 @@ export const getProductById = (id) => {
       setTimeout(() => {
         dispatch(resetNotification());
       }, 3000);
-    } finally {
       dispatch(isLoadingFalse());
     }
   };
 };
 
-const setProducts = (data, total) => ({ type: SET_PRODUCTS, data, total });
 const isLoading = () => ({ type: IS_LOADING_TRUE });
+const setProducts = (data, total) => ({ type: SET_PRODUCTS, data, total });
 const isLoadingFalse = () => ({ type: IS_LOADING_FALSE });
 const setNotification = (
   notification = 'Sorry! Something wrong!',

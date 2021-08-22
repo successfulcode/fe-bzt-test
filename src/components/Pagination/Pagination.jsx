@@ -42,8 +42,8 @@ const Pagination = ({
         >
           <div>
             <span
-              className={`Pagination__span-link  pagination-previous ${
-                currentPage === 1 && 'Pagination__span-hide'
+              className={`pagination__span-link  pagination-previous ${
+                currentPage === 1 && 'pagination__span-hide'
               } `}
               onClick={() => setCurrentPageHandler(currentPage - 1)}
             >
@@ -55,7 +55,7 @@ const Pagination = ({
               {showPagesNumber.map((number) => (
                 <li key={number}>
                   <span
-                    className={`Pagination__span-link pagination-link ${
+                    className={`pagination__span-link pagination-link ${
                       number === currentPage && 'is-current'
                     }`}
                     onClick={() => setCurrentPageHandler(number)}
@@ -68,9 +68,9 @@ const Pagination = ({
           </div>
           <div>
             <span
-              className={`Pagination__span-link  pagination-previous ${
+              className={`pagination__span-link  pagination-previous ${
                 currentPage === Math.ceil(productsTotal / productsPerPage) &&
-                'Pagination__span-hide'
+                'pagination__span-hide'
               } `}
               onClick={() => setCurrentPageHandler(currentPage + 1)}
             >

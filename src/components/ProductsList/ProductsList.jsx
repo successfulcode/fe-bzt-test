@@ -48,7 +48,7 @@ const ProductsList = ({
     indexOfLastProduct,
     filterStatus
   ]);
-
+  console.log(isLoading);
   return (
     <>
       {isNotification && (
@@ -65,17 +65,19 @@ const ProductsList = ({
         <div className='is-flex is-justify-content-center is-align-content-center'>
           <Spinner />
         </div>
-      ) : products.length > 0 ? (
+      ) : (
         <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
           {products.map((product) => (
             <ProductsListItem key={product.id} product={product} />
           ))}
         </div>
-      ) : (
+      )}
+      {products.length <= 0 && !isLoading && (
         <div className='is-flex is-justify-content-center'>
           <p>Product list is empty...</p>
         </div>
       )}
+
       <Pagination
         productsTotal={total}
         getProducts={getProducts}

@@ -10,7 +10,7 @@ import {
 const initialState = {
   productsList: [],
   total: 1,
-  isLoading: false,
+  isLoading: true,
   isNotification: false,
   notification: {
     message: '',

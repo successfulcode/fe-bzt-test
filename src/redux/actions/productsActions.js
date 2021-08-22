@@ -21,6 +21,7 @@ export const getProducts = (pageNumber, pageSize, filterStatus) => {
       );
       if (status === 200 && data) {
         dispatch(setProducts(data, total));
+        dispatch(isLoadingFalse());
       }
     } catch (error) {
       console.log(error);
@@ -28,7 +29,6 @@ export const getProducts = (pageNumber, pageSize, filterStatus) => {
       setTimeout(() => {
         dispatch(resetNotification());
       }, 3000);
-    } finally {
       dispatch(isLoadingFalse());
     }
   };
@@ -50,14 +50,13 @@ export const getProductById = (id) => {
       setTimeout(() => {
         dispatch(resetNotification());
       }, 3000);
-    } finally {
       dispatch(isLoadingFalse());
     }
   };
 };
 
-const setProducts = (data, total) => ({ type: SET_PRODUCTS, data, total });
 const isLoading = () => ({ type: IS_LOADING_TRUE });
+const setProducts = (data, total) => ({ type: SET_PRODUCTS, data, total });
 const isLoadingFalse = () => ({ type: IS_LOADING_FALSE });
 const setNotification = (
   notification = 'Sorry! Something wrong!',

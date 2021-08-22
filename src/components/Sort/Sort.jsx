@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Sort = ({ setFilterStatus, setCurrentPage }) => {
+const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
   const changeFilterHandler = (e) => {
     setFilterStatus(e.target.value);
     setCurrentPage(1);
@@ -8,19 +8,42 @@ const Sort = ({ setFilterStatus, setCurrentPage }) => {
 
   return (
     <div className='box mt-4 mx-2'>
-      <div
-        className='is-flex is-justify-content-center is-flex-wrap-wrap'
-        onChange={changeFilterHandler}
-      >
+      <div className='is-flex is-justify-content-center is-flex-wrap-wrap'>
         <div className='mr-2'>Sort by price:</div>
         <div>
-          <label className='radio mr-5'>
-            <input type='radio' name='foobar' value='ascending' /> Ascending
+          <label className='radio mr-5 sort__label'>
+            <input
+              type='radio'
+              name='none'
+              value='none'
+              onChange={changeFilterHandler}
+              checked={filterStatus === 'none'}
+            />{' '}
+            None
           </label>
         </div>
         <div>
-          <label className='radio'>
-            <input type='radio' name='foobar' value='descending' /> Descending
+          <label className='radio mr-5 sort__label'>
+            <input
+              type='radio'
+              name='ascending'
+              value='ascending'
+              onChange={changeFilterHandler}
+              checked={filterStatus === 'ascending'}
+            />{' '}
+            Ascending
+          </label>
+        </div>
+        <div>
+          <label className='radio sort__label'>
+            <input
+              type='radio'
+              name='descendin'
+              value='descending'
+              onChange={changeFilterHandler}
+              checked={filterStatus === 'descending'}
+            />{' '}
+            Descending
           </label>
         </div>
       </div>

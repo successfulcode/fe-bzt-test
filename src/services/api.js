@@ -1,7 +1,7 @@
 import product_list from '../data/product_list.json';
 
 const status = 200;
-const products = [...product_list];
+let products = [...product_list];
 
 export const productsApi = {
   async getProducts(pageNumber, pageSize, filterStatus = 'none') {
@@ -9,6 +9,8 @@ export const productsApi = {
       products.sort((a, b) => a.actual_price - b.actual_price);
     } else if (filterStatus === 'descending') {
       products.sort((a, b) => b.actual_price - a.actual_price);
+    } else if (filterStatus === 'none') {
+      products = [...product_list];
     }
     return {
       status,

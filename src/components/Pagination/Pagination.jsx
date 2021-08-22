@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { animateScroll as scroll } from 'react-scroll';
 
 const Pagination = ({
   productsTotal,
@@ -8,6 +9,7 @@ const Pagination = ({
 }) => {
   const setCurrentPageHandler = (number) => {
     setCurrentPage(number);
+    scroll.scrollToTop();
   };
 
   let totalPages = productsTotal / productsPerPage;
@@ -28,7 +30,6 @@ const Pagination = ({
     startPage = currentPage - 5;
     endPage = currentPage + 4;
   }
-
   const showPagesNumber = pagesNumbers.slice(startPage, endPage);
 
   return (
@@ -41,8 +42,8 @@ const Pagination = ({
         >
           <div>
             <span
-              className={`Pagination__span-link  pagination-previous ${
-                currentPage === 1 && 'Pagination__span-hide'
+              className={`pagination__span-link  pagination-previous ${
+                currentPage === 1 && 'pagination__span-hide'
               } `}
               onClick={() => setCurrentPageHandler(currentPage - 1)}
             >
@@ -54,7 +55,7 @@ const Pagination = ({
               {showPagesNumber.map((number) => (
                 <li key={number}>
                   <span
-                    className={`Pagination__span-link pagination-link ${
+                    className={`pagination__span-link-none pagination__span-link pagination-link ${
                       number === currentPage && 'is-current'
                     }`}
                     onClick={() => setCurrentPageHandler(number)}
@@ -64,12 +65,15 @@ const Pagination = ({
                 </li>
               ))}
             </ul>
+            <span className='pagination__span-link-mobile pagination__span-link pagination-link is-current'>
+              {currentPage}
+            </span>
           </div>
           <div>
             <span
-              className={`Pagination__span-link  pagination-previous ${
+              className={`pagination__span-link  pagination-previous ${
                 currentPage === Math.ceil(productsTotal / productsPerPage) &&
-                'Pagination__span-hide'
+                'pagination__span-hide'
               } `}
               onClick={() => setCurrentPageHandler(currentPage + 1)}
             >

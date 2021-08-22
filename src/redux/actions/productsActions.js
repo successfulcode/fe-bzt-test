@@ -40,7 +40,6 @@ export const getProductById = (id) => {
       dispatch(isLoading());
       const { status, data } = await productsApi.getProductsById(id);
       if (status === 200 && data) {
-        console.log('getProductById', data);
         await dispatch(setProductById(data));
         dispatch(isLoadingFalse());
       }

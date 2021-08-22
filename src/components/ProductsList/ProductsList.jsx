@@ -39,7 +39,6 @@ const ProductsList = ({
     }
     localStorage.setItem('pageNumber', currentPage);
     localStorage.setItem('filter', filterStatus);
-    console.log('filterStatus', filterStatus);
   }, [
     getProducts,
     productsPerPage,
@@ -48,7 +47,7 @@ const ProductsList = ({
     indexOfLastProduct,
     filterStatus
   ]);
-  console.log(products);
+
   return (
     <>
       {isNotification && (

@@ -24,7 +24,7 @@ const ProductsList = ({
   const [currentPage, setCurrentPage] = useState(
     parseInt(localStorage.getItem('pageNumber')) || 1
   );
-  const [productsPerPage] = useState(40);
+  const [productsPerPage] = useState(32);
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const [filterStatus, setFilterStatus] = useState(

@@ -8,9 +8,18 @@ const ProductsListItem = ({ product }) => {
     return +(Math.round(price + 'e+2') + 'e-2');
   };
 
+  const discount = (product.actual_price / product.base_price) * 100 - 100;
+
   return (
     <div className='productsListItem box m-2'>
       <Link to={`/product/${product.id}`} className='productsListItem__link'>
+        {product.actual_price < product.base_price && (
+          <div className='is-flex is-justify-content-flex-end'>
+            <span className='productsListItem__image-label'>
+              {discount.toFixed(0)}%
+            </span>
+          </div>
+        )}
         <div className='productsListItem__image'>
           <Img
             src={product.filename}
@@ -32,9 +41,22 @@ const ProductsListItem = ({ product }) => {
               {product.product_name}
             </div>
           </div>
-          <div className='has-text-centered is-flex is-flex-direction-column'>
-            <strong>{roundToTwo(product.actual_price).toFixed(2)} Eur</strong>
-          </div>
+          {product.actual_price < product.base_price ? (
+            <div>
+              <div className='productsListItem__price-old has-text-centered is-flex is-flex-direction-column'>
+                {roundToTwo(product.base_price).toFixed(2)} Eur
+              </div>
+              <div className='productsListItem__price-dicount has-text-centered is-flex is-flex-direction-column'>
+                <strong>
+                  {roundToTwo(product.actual_price).toFixed(2)} Eur
+                </strong>
+              </div>
+            </div>
+          ) : (
+            <div className='has-text-centered is-flex is-flex-direction-column'>
+              <strong>{roundToTwo(product.actual_price).toFixed(2)} Eur</strong>
+            </div>
+          )}
         </div>
       </Link>
     </div>

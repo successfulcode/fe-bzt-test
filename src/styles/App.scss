@@ -9,7 +9,7 @@
   height: 350px;
   width: 300px;
   .productsListItem__link {
-    color: #4a4a4a;
+    color: #000;
   }
   .productsListItem__image {
     display: flex;
@@ -19,6 +19,22 @@
   .productsListItem__image-img {
     height: 200px;
     width: auto;
+  }
+  .productsListItem__image-label {
+    color: #eb152e;
+    border: 2px solid #eb152e;
+    font-size: 0.8rem;
+    font-weight: bold;
+    position: absolute;
+    padding: 2px;
+  }
+  .productsListItem__price-dicount {
+    color: #eb152e;
+  }
+  .productsListItem__price-old {
+    color: #4a4a4a;
+    text-decoration: line-through;
+    opacity: 0.9;
   }
   .productsListItem__brand {
     opacity: 0.5;

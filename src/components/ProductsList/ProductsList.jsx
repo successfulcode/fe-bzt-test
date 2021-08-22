@@ -48,7 +48,7 @@ const ProductsList = ({
     indexOfLastProduct,
     filterStatus
   ]);
-  console.log(isLoading);
+  console.log(products);
   return (
     <>
       {isNotification && (

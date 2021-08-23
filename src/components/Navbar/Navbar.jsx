@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className='navbar is-link'>
       <div className='navbar-brand'>
-        <Link to='/' className='m-2 pl-4'>
+        <a to='/' className='m-2 pl-4'>
           <svg id='Layer_1' viewBox='0 0 512 512' width='45'>
             <g id='XMLID_1_'>
               <path
@@ -17,7 +17,7 @@ const Navbar = () => {
               />
             </g>
           </svg>
-        </Link>
+        </a>
       </div>
     </nav>
   );

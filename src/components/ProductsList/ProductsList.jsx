@@ -32,11 +32,7 @@ const ProductsList = ({
   );
 
   useEffect(() => {
-    if (currentPage === 1) {
-      getProducts(currentPage - 1, productsPerPage, filterStatus);
-    } else {
-      getProducts(indexOfFirstProduct, indexOfLastProduct, filterStatus);
-    }
+    getProducts(indexOfFirstProduct, indexOfLastProduct, filterStatus);
     sessionStorage.setItem('pageNumber', currentPage);
     sessionStorage.setItem('filter', filterStatus);
   }, [

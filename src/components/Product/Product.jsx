@@ -81,7 +81,7 @@ const Product = ({
                   <div>
                     <strong>
                       <span className='product__info mr-1'>Price:</span>
-                      {roundToTwo(product.actual_price).toFixed(2)} Eur
+                      {parseFloat(product.actual_price).toFixed(2)} Eur
                     </strong>
                   </div>
                 )}

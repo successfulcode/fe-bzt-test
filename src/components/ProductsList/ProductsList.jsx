@@ -24,7 +24,7 @@ const ProductsList = ({
   const [currentPage, setCurrentPage] = useState(
     parseInt(sessionStorage.getItem('pageNumber')) || 1
   );
-  const [productsPerPage] = useState(32);
+  const productsPerPage = 32;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const [filterStatus, setFilterStatus] = useState(
@@ -32,11 +32,7 @@ const ProductsList = ({
   );
 
   useEffect(() => {
-    if (currentPage === 1) {
-      getProducts(currentPage - 1, productsPerPage, filterStatus);
-    } else {
-      getProducts(indexOfFirstProduct, indexOfLastProduct, filterStatus);
-    }
+    getProducts(indexOfFirstProduct, indexOfLastProduct, filterStatus);
     sessionStorage.setItem('pageNumber', currentPage);
     sessionStorage.setItem('filter', filterStatus);
   }, [

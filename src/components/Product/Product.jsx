@@ -25,10 +25,6 @@ const Product = ({
 
   const history = useHistory();
 
-  const roundToTwo = (price) => {
-    return +(Math.round(price + 'e+2') + 'e-2');
-  };
-
   return (
     <>
       {isLoading ? (
@@ -61,7 +57,7 @@ const Product = ({
                     <div>
                       <span className='product__info mr-1'>Regular price:</span>
                       <span className='product__price-old'>
-                        {roundToTwo(product.base_price).toFixed(2)} Eur
+                        {parseFloat(product.base_price).toFixed(2)} Eur
                       </span>
                     </div>
                     <div>
@@ -70,7 +66,7 @@ const Product = ({
                           NOW:
                         </span>
                         <span className='product__price-discount'>
-                          {roundToTwo(product.actual_price).toFixed(2)} Eur
+                          {parseFloat(product.actual_price).toFixed(2)} Eur
                         </span>
                       </strong>
                     </div>

@@ -4,10 +4,6 @@ import { Img } from 'react-image';
 import Spinner from '../../UI/Spinner/Spinner';
 
 const ProductsListItem = ({ product }) => {
-  const roundToTwo = (price) => {
-    return +(Math.round(price + 'e+2') + 'e-2');
-  };
-
   const discount = (product.actual_price / product.base_price) * 100 - 100;
 
   return (
@@ -44,17 +40,17 @@ const ProductsListItem = ({ product }) => {
           {product.actual_price < product.base_price ? (
             <div>
               <div className='productsListItem__price-old has-text-centered is-flex is-flex-direction-column'>
-                {roundToTwo(product.base_price).toFixed(2)} Eur
+                {parseFloat(product.base_price).toFixed(2)} Eur
               </div>
               <div className='productsListItem__price-dicount has-text-centered is-flex is-flex-direction-column'>
                 <strong>
-                  {roundToTwo(product.actual_price).toFixed(2)} Eur
+                  {parseFloat(product.actual_price).toFixed(2)} Eur
                 </strong>
               </div>
             </div>
           ) : (
             <div className='has-text-centered is-flex is-flex-direction-column'>
-              <strong>{roundToTwo(product.actual_price).toFixed(2)} Eur</strong>
+              <strong>{parseFloat(product.actual_price).toFixed(2)} Eur</strong>
             </div>
           )}
         </div>

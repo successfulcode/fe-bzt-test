@@ -12,25 +12,24 @@ const Pagination = ({
     scroll.scrollToTop();
   };
 
-  let totalPages = productsTotal / productsPerPage;
-  const pagesNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPages); i++) {
-    pagesNumbers.push(i);
-  }
+  const totalPages = Math.round(productsTotal / productsPerPage);
 
-  let startPage;
-  let endPage;
+  let startPage = currentPage - 5;
+  let endPage = currentPage + 4;
+
   if (currentPage <= 6 || productsTotal <= 9) {
     startPage = 0;
     endPage = 9;
   } else if (currentPage + 4 >= totalPages) {
     startPage = totalPages - 9;
     endPage = totalPages;
-  } else {
-    startPage = currentPage - 5;
-    endPage = currentPage + 4;
   }
-  const showPagesNumber = pagesNumbers.slice(startPage, endPage);
+
+  const showPagesNumber = [];
+
+  for (let i = startPage; i < endPage; i++) {
+    showPagesNumber.push(i + 1);
+  }
 
   return (
     <>

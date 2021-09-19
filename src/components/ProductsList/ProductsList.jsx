@@ -57,18 +57,18 @@ const ProductsList = ({
         filterStatus={filterStatus}
       />
       {isLoading ? (
-        <div className='is-flex is-justify-content-center is-align-content-center'>
+        <div className="is-flex is-justify-content-center is-align-content-center">
           <Spinner />
         </div>
       ) : (
-        <div className='mt-5 is-flex is-justify-content-center is-flex-wrap-wrap'>
+        <div className="mt-5 is-flex is-justify-content-center is-flex-wrap-wrap">
           {products.map((product) => (
             <ProductsListItem key={product.id} product={product} />
           ))}
         </div>
       )}
       {products.length <= 0 && !isLoading && (
-        <div className='is-flex is-justify-content-center'>
+        <div className="is-flex is-justify-content-center">
           <p>Product list is empty...</p>
         </div>
       )}

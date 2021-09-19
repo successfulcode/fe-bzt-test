@@ -7,15 +7,15 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
   };
 
   return (
-    <div className='box mt-4 mx-2 sort is-flex is-justify-content-center'>
-      <div className='sort is-flex is-justify-content-center is-flex-wrap-wrap'>
-        <div className='mr-2'>Sort by price:</div>
+    <div className="box mt-4 mx-2 sort is-flex is-justify-content-center">
+      <div className="sort is-flex is-justify-content-center is-flex-wrap-wrap">
+        <div className="mr-2">Sort by price:</div>
         <div>
-          <label className='radio mr-5 sort__label'>
+          <label className="radio mr-5 sort__label">
             <input
-              type='radio'
-              name='none'
-              value='none'
+              type="radio"
+              name="none"
+              value="none"
               onChange={changeFilterHandler}
               checked={filterStatus === 'none'}
             />{' '}
@@ -23,11 +23,11 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
           </label>
         </div>
         <div>
-          <label className='radio mr-5 sort__label'>
+          <label className="radio mr-5 sort__label">
             <input
-              type='radio'
-              name='ascending'
-              value='ascending'
+              type="radio"
+              name="ascending"
+              value="ascending"
               onChange={changeFilterHandler}
               checked={filterStatus === 'ascending'}
             />{' '}
@@ -35,11 +35,11 @@ const Sort = ({ setFilterStatus, setCurrentPage, filterStatus }) => {
           </label>
         </div>
         <div>
-          <label className='radio sort__label'>
+          <label className="radio sort__label">
             <input
-              type='radio'
-              name='descendin'
-              value='descending'
+              type="radio"
+              name="descendin"
+              value="descending"
               onChange={changeFilterHandler}
               checked={filterStatus === 'descending'}
             />{' '}

@@ -5,9 +5,9 @@ import Product from '../components/Product/Product';
 const Routes = () => {
   return (
     <Switch>
-      <Route path='/product/:id' component={() => <Product />} />
-      <Route path='/' render={() => <ProductsList />} />
-      <Redirect to='/' />
+      <Route path="/product/:id" component={() => <Product />} />
+      <Route path="/" render={() => <ProductsList />} />
+      <Redirect to="/" />
     </Switch>
   );
 };

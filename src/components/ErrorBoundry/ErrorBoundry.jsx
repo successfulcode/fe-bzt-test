@@ -13,8 +13,8 @@ export default class ErrorBoundry extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className='is-flex is-justify-content-center mt-6'>
-          <img src={oops} alt='Error' width='500' height='500' />
+        <div className="is-flex is-justify-content-center mt-6">
+          <img src={oops} alt="Error" width="500" height="500" />
         </div>
       );
     }

@@ -35,9 +35,9 @@ const Pagination = ({
     <>
       {!(productsTotal <= productsPerPage) && (
         <nav
-          className='is-flex is-justify-content-center mt-5 mb-5'
-          role='navigation'
-          aria-label='pagination'
+          className="is-flex is-justify-content-center mt-5 mb-5"
+          role="navigation"
+          aria-label="pagination"
         >
           <div>
             <span
@@ -50,7 +50,7 @@ const Pagination = ({
             </span>
           </div>
           <div>
-            <ul className='is-flex is-justify-content-center is-flex-wrap-wrap'>
+            <ul className="is-flex is-justify-content-center is-flex-wrap-wrap">
               {showPagesNumber.map((number) => (
                 <li key={number}>
                   <span
@@ -64,7 +64,7 @@ const Pagination = ({
                 </li>
               ))}
             </ul>
-            <span className='pagination__span-link-mobile pagination__span-link pagination-link is-current'>
+            <span className="pagination__span-link-mobile pagination__span-link pagination-link is-current">
               {currentPage}
             </span>
           </div>

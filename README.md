@@ -1,5 +1,5 @@
 # Clothes shop
-Task:
+# # # Task:
 • With the extracted JSON or the provided one (product_list.js), create a list of\
 products with pagination.\
 • Each product (card) must contain image, name, brand and price.\
